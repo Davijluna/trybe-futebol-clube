@@ -1,4 +1,4 @@
-import { DataTypes, Model, INTEGER } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import db from '.';
 
 class Matches extends Model {
@@ -7,40 +7,47 @@ class Matches extends Model {
   public homeTeanGoals: number;
   public awayTeam: number;
   public awayTeamGoals: number;
-  public inProgress: number;
+  public inProgress: number; //
 }
 
 Matches.init({
   id: {
-    type: INTEGER,
-    allowNull: false,
+    type: DataTypes.INTEGER,
+    // allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
   homeTeam: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
-    field: 'home_Team',
+    // field: 'home_Team',
+    // references: {
+    //   model: 'teams', key: 'id',
+    // }, // REVER ESTA PARTE NO CUORSE.
   },
   homeTeanGoals: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
-    field: 'home_teanGoals',
+    // field: 'home_teanGoals',
   },
   awayTeam: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
-    field: 'away_team',
+    // field: 'away_team',
+    // references: {
+    //   model: 'team',
+    //   key: 'id',
+    // }, // REVER ESTA PARTE NO CUORSE .
   },
   awayTeamGoals: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
-    field: 'away_team_goals',
+    // field: 'away_team_goals',
   },
   inProgress: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
-    field: 'in_progress',
+    // field: 'in_progress',
   },
 }, {
 
