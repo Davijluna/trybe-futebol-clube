@@ -12,7 +12,13 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Seu teste', () => {
+describe('POST', () => {
+  describe('Primeiro caso de teste', () => {
+    it('Deve cadastrar', async () => {
+      const response = await chai.request()
+    })
+
+  })
   /**
    * Exemplo do uso de stubs com tipos
    */
