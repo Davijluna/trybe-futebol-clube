@@ -12,7 +12,7 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('POST', () => {
+describe('Testando login', () => {
   describe('Primeiro caso de teste', () => {
     it('Deve cadastrar', async () => {
       const response = await chai.request()
