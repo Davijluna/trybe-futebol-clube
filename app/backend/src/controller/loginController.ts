@@ -1,9 +1,12 @@
 import { Request, Response } from 'express';
-import User from '../database/models/User';
+import UserServices from '../services/serviceUser';
 
 export default class LoginController {
   static async create(req: Request, res: Response) {
-    const newUser = await User.create(req.body);
-    return res.status(200).json(newUser);
+    const response = await UserServices.login(req.body);
+    if (response.erro) {
+      return res.status(response.code).json(response.erro);
+    }
+    return res.status(200).json({ token: response.data });
   }
 }

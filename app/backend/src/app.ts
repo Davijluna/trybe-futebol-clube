@@ -1,4 +1,5 @@
 import * as express from 'express';
+import LoginController from './controller/loginController';
 
 class App {
   public app: express.Express;
@@ -10,7 +11,7 @@ class App {
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
-    this.app.use('/login', (req, res) => res.json({ oi: true }));
+    // this.app.use('/login', );
   }
 
   private config():void {
@@ -20,9 +21,9 @@ class App {
       res.header('Access-Control-Allow-Headers', '*');
       next();
     };
-
     this.app.use(express.json());
     this.app.use(accessControl);
+    this.app.post('/login', LoginController.create);//
   }
 
   public start(PORT: string | number):void {
