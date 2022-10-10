@@ -1,5 +1,7 @@
 import * as express from 'express';
 import LoginController from './controller/loginController';
+// import UserServices from './services/serviceUser';
+import validEmail from './middleware/middlewareLogin';
 
 class App {
   public app: express.Express;
@@ -23,7 +25,8 @@ class App {
     };
     this.app.use(express.json());
     this.app.use(accessControl);
-    this.app.post('/login', LoginController.create);//
+    this.app.post('/login',validEmail.checkPassworEmail, validEmail.checkEmail, validEmail.checkPassword, LoginController.create);//
+    this.app.get('/login/validate', LoginController.chektoken);
   }
 
   public start(PORT: string | number):void {
