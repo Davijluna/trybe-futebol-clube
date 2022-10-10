@@ -7,7 +7,7 @@ import IUser from '../entities/IUser';
 import 'dotenv/config';
 import PayloadToken from '../entities/Itoken';
 import { verify } from 'jsonwebtoken';
-import { any } from 'sequelize/types/lib/operators';
+// import { any } from 'sequelize/types/lib/operators';
 
 export default class UserServices {
   static login = async (user: IUser) => {
