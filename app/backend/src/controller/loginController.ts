@@ -17,14 +17,4 @@ export default class LoginController {
     }
     return res.status(200).json({ role: response.role })
   }
-
-  // static async getId(req: Request, res: Response) {
-  //   const result = await UserServices.veryficEmail(Number(req.params));
-  //   return res.status(200).json(result);
-  // }
-
-  // static async functionEmail(req: Request, res: Response) {
-  //   const response = await UserServices.veryficEmail(req.body);
-  //   return res.status(response.code).json(response.data);
-  // }
 }

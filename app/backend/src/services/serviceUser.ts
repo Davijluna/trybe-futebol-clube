@@ -33,25 +33,6 @@ export default class UserServices {
         return { erro: { message: 'not token' }, code: 401 };
     }
     return { role: user.role }
-    // if (!token) {
-    // }
-    // try {
-    //   const vetiTok = checkToken(token);
-    //   const usuario = await UserServices.login(vetiTok.email);
-    //   return res.status(200).json({ role: usuario.data  });
-    // } catch (erro) {
-    //   res.status(401).json({ message: 'Invalid token' });
-    // }
-    // return { role: token.role };
-    
   };
   
 }
-// const user = await User.findOne({ where: { email } });
-// const { email } = verify(token, 'jwt_secret') as PayloadToken;
-// const { email } = token
-// const verifyToken = checkToken(token) as User
-// const user = await 
-//   const { token1 } = token;
-//   const tokenTest = checkToken(token.token1);
-//   if (!tokenTest) {}
