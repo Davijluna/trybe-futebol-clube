@@ -1,6 +1,7 @@
 import * as express from 'express';
 import LoginController from './controller/loginController';
 import TeamsController from './controller/teamsController';
+// import MatchesController from './controller/matches.Controller'; //
 // import UserServices from './services/serviceUser';
 import validEmail from './middleware/middlewareLogin';
 
@@ -25,11 +26,12 @@ class App {
     };
     this.app.use(express.json());
     this.app.use(accessControl);
-    this.app.post('/login',validEmail.checkPassworEmail, validEmail.checkEmail, validEmail.checkPassword, LoginController.create);//
+    this.app.post('/login', validEmail
+      .checkPassworEmail, validEmail.checkEmail, validEmail.checkPassword, LoginController.create);//
     this.app.get('/login/validate', LoginController.chektoken);
-    this.app.get('/teams', TeamsController.creat) // rota do requisito 15.
-    this.app.get('/teams/:id', TeamsController.getId) // rota do requidito 16.
-    this.app.get('/matches')
+    this.app.get('/teams', TeamsController.creat); // rota do requisito 15.
+    this.app.get('/teams/:id', TeamsController.getId); // rota do requidito 16.
+    // this.app.get('/matches', MatchesController.getAll); //
   }
 
   public start(PORT: string | number):void {

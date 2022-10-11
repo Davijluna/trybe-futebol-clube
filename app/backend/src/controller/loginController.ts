@@ -10,11 +10,11 @@ export default class LoginController {
     return res.status(200).json({ token: response.data });
   }
 
-  static async chektoken(req: Request, res: Response ) {
+  static async chektoken(req: Request, res: Response) {
     const response = await UserServices.tokenValidation(req.headers.authorization);
     if (response.erro) {
       return res.status(response.code).json(response.erro);
     }
-    return res.status(200).json({ role: response.role })
+    return res.status(200).json({ role: response.role });
   }
 }
