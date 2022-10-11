@@ -26,7 +26,7 @@ Matches.init({
     //   model: 'teams', key: 'id',
     // }, // REVER ESTA PARTE NO CUORSE.
   },
-  homeTeanGoals: {
+  homeTeamGoals: {
     type: DataTypes.INTEGER,
     allowNull: false,
     // field: 'home_teanGoals',
@@ -57,7 +57,7 @@ Matches.init({
   modelName: 'matches',
   timestamps: false,
 });
-// Matches.belongsTo(Team, { foreignKey: 'homeTeam', as: 'teamHome'});
-// Matches.belongsTo(Team, { foreignKey: 'awayTeam', as: 'teamAway'});
+Matches.belongsTo(Team, { foreignKey: 'homeTeam', as: 'teamHome'});
+Matches.belongsTo(Team, { foreignKey: 'awayTeam', as: 'teamAway'});
 
 export default Matches;
