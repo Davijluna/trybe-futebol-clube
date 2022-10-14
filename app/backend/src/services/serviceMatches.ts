@@ -26,20 +26,28 @@ export default class MatchesService {
       ],
     });
     return result;
-};
+  }
 
-static async patchMatch (id: any) { // trocar nome..
- await this.model.update(
-    {inProgress: false},
-    { where: { id } },
-  );
-  return {  message: 'Finished' };
-}
+  static async patchMatch(id: any) { // trocar nome..
+    await this.model.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+    return { message: 'Finished' };
+  }
 
-static async saveMatch({ homeTeam, awayTeam, awayTeamGoals, inProgress, homeTeamGoals }: IMachts) {
-  const body = { homeTeam,awayTeam, homeTeamGoals, awayTeamGoals, inProgress };
-  const matchesBody = await this.model.create({ ...body })
-  return { code: 201, data: matchesBody };
-};
- 
+  static async saveMatch({
+    homeTeam, awayTeam, awayTeamGoals, inProgress, homeTeamGoals,
+  }: IMachts) {
+    const body = { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress };
+    const matchesBody = await this.model.create({ ...body });
+    return { code: 201, data: matchesBody };
+  }
+
+  static async updateMarch(id: number, homeTeamGoals: number, awayTeamGoals: number) { // conferir este metodo.
+    await this.model.update(
+      { homeTeamGoals, awayTeamGoals },
+      { where: { id } },
+    );
+  }
 }

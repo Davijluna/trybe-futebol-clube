@@ -17,10 +17,20 @@ describe('/login', () => {
     it('Deve cadastrar', async () => {
       const response = await chai.request(app).post('/login').send({
         email: 'user@user.com',  //
-        password: '$2a$08$Y8Abi8jXvsXyqm.rmp0B.uQBA5qUz7T6Ghlg/CvVr/gLxYj5UAZVO' //
+        password: '$2a$08$Y8Abi8jXvsXyqm.rmp0B.uQBA5qUz7T6Ghlg/CvVr/gLxYj5UAZVO',//
       });
       expect(response.status).to.equal(200);
+      expect(response.body).to.have.property('token')
     })
+
+// describe('/login/validate', () => {
+//   describe('teste de login validade', () => {
+//     it('')
+//     // const response = await chai.request(app).get('/login/validate').send({
+
+//     // })
+//   })
+// })
 
 //   })
   /**
