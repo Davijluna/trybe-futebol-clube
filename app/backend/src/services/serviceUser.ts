@@ -28,7 +28,7 @@ export default class UserServices {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      return { erro: { message: 'not token' }, code: 401 };
+      return { erro: { message: 'Token must be a valid token' }, code: 401 };
     }
     return { role: user.role };
   };
