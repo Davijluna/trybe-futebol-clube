@@ -42,7 +42,4 @@ static async saveMatch({ homeTeam, awayTeam, awayTeamGoals, inProgress, homeTeam
   return { code: 201, data: matchesBody };
 };
  
-// static async fishMatah(id: string) {
-//   await this.model.update({ inProgress: false })
-// }
 }
