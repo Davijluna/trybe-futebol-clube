@@ -22,13 +22,16 @@ const checkToken = (token: any) => {
 };
 
 const validToken = (req: Request, res: Response, next:NextFunction) => {
-  const tokejwt = process.env.JWT_SECRET as string;
-  const { authorization } = req.headers;
-  if (authorization) {
-    
-    res.status(401).json({ massage: 'Token must be a valid token' })
+  const token = req.headers.authorization;
+  if (!token) {
+    return res.status(401).json({ message: 'Token must be a valid token' });
   }
-  next();
+  try {
+    jwt.verify(token, secret);
+    next();
+  } catch (erro) {
+    return res.status(401).json({ message: 'Token must be a valid token' })
+  }
 }
 
 export { createToken, checkToken, validToken };
