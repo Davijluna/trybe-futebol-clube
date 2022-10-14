@@ -1,3 +1,3 @@
 export default interface PayloadToken {
-    email: string;
+  email: string;
 }
