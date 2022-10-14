@@ -1,5 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import 'dotenv/config';
+import { verify } from 'jsonwebtoken';
+import { Request, Response, NextFunction } from 'express';
 
 const secret = process.env.JWT_SECRET || 'jwt_secret';
 const jwtConfig: jwt.SignOptions = { expiresIn: '7d', algorithm: 'HS256' };
@@ -19,4 +21,14 @@ const checkToken = (token: any) => {
   }
 };
 
-export { createToken, checkToken };
+const validToken = (req: Request, res: Response, next:NextFunction) => {
+  const tokejwt = process.env.JWT_SECRET as string;
+  const { authorization } = req.headers;
+  if (authorization) {
+    
+    res.status(401).json({ massage: 'Token must be a valid token' })
+  }
+  next();
+}
+
+export { createToken, checkToken, validToken };
