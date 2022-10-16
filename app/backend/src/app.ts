@@ -2,6 +2,7 @@ import * as express from 'express';
 import LoginController from './controller/loginController';
 import TeamsController from './controller/teamsController';
 import MatchesController from './controller/matches.Controller'; //
+import LeaferBoadsController from './controller/LeaderboardController';
 // import UserServices from './services/serviceUser';
 import validEmail from './middleware/middlewareLogin';
 import { validToken } from './middleware/middlewareToken';
@@ -34,10 +35,10 @@ class App {
     this.app.get('/teams/:id', TeamsController.getId); // rota do requidito 16.
     this.app.get('/matches', MatchesController.getAll); // rota do requisito 19. obs: quando fiz esse requisito passou o 20 21
     this.app.post('/matches', validEmail.checkTeams, validToken, MatchesController.seveController);
-    this.app.patch('/matches/:id/finish', MatchesController.patchMatchController); // rota requisito 24  PROBLEMAS ...
+    this.app.patch('/matches/:id/finish', MatchesController.patchMatchController); // rota requisito 24  PROBLEMAS;
     this.app.patch('/matches/:id', validToken, MatchesController.UpdateController);
-    this.app.get('/leaderboard/home', ) // requisito 29 ... 
-    // this.app.patch('/matches/:id', checkToken, MatchesController.)
+    this.app.get('/leaderboard/home', LeaferBoadsController.getall);// requisito 29 ...
+    // this.app.patch('/matches/:id', checkToken, MatchesController.) awy
   }
 
   public start(PORT: string | number):void {

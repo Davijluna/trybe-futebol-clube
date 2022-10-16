@@ -22,7 +22,7 @@ Team.init({
 
   underscored: true,
   sequelize: db,
-  modelName: 'teams', // 
+  modelName: 'teams', //
   timestamps: false,
   // tableName: 'teams', // ESTÁ PARTE NÃO TINHA ANTES
 });
