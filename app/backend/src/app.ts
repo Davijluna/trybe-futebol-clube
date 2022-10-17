@@ -1,11 +1,7 @@
 import * as express from 'express';
-import LoginController from './controller/loginController';
-import TeamsController from './controller/teamsController';
-import MatchesController from './controller/matches.Controller'; //
-import LeaferBoadsController from './controller/LeaderboardController';
+import router from './router/login.router';
+
 // import UserServices from './services/serviceUser';
-import validEmail from './middleware/middlewareLogin';
-import { validToken } from './middleware/middlewareToken';
 
 class App {
   public app: express.Express;
@@ -28,17 +24,7 @@ class App {
     };
     this.app.use(express.json());
     this.app.use(accessControl);
-    this.app.post('/login', validEmail
-      .checkPassworEmail, validEmail.checkEmail, validEmail.checkPassword, LoginController.create);//
-    this.app.get('/login/validate', LoginController.chektoken);
-    this.app.get('/teams', TeamsController.creat); // rota do requisito 15.
-    this.app.get('/teams/:id', TeamsController.getId); // rota do requidito 16.
-    this.app.get('/matches', MatchesController.getAll); // rota do requisito 19. obs: quando fiz esse requisito passou o 20 21
-    this.app.post('/matches', validEmail.checkTeams, validToken, MatchesController.seveController);
-    this.app.patch('/matches/:id/finish', MatchesController.patchMatchController); // rota requisito 24  PROBLEMAS;
-    this.app.patch('/matches/:id', validToken, MatchesController.UpdateController);
-    this.app.get('/leaderboard/home', LeaferBoadsController.getall);// requisito 29 ...
-    // this.app.patch('/matches/:id', checkToken, MatchesController.) awy
+    this.app.use(router); // CHAMEI O ROUTER PARA APP.
   }
 
   public start(PORT: string | number):void {
