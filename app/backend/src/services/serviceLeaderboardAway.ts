@@ -1,7 +1,7 @@
 import Matches from '../database/models/Matches'; // ESTE ARQUIVO ESTÁ DANDO PROBLEMA..
 import Team from '../database/models/Team';
 // Devido a complexidade do requisito pedi ajuda de 'Guilherme Fernandes' na sala de estudo 4. em 15/10/2022 as 8:00.
-export default class getAlltamsLeaderBoards {
+export default class AwayLeaderboard {
   static gols = (arrayGols: any) => {
     const goalsFavor = arrayGols.reduce((acc: any, curr: any) => acc + curr.awayTeamGoals, 0); // awayTeamGoals
     const goalsOwn = arrayGols.reduce((acc: any, curr: any) => acc + curr.homeTeamGoals, 0); // homeTeamGoals
@@ -52,10 +52,10 @@ export default class getAlltamsLeaderBoards {
 
   static createBoarder = (array: any) => array.map((team: any) => {
     console.log(team);
-    const gols = getAlltamsLeaderBoards.gols(team.matchAway);
-    const result = getAlltamsLeaderBoards.results(team.matchAway);
+    const gols = AwayLeaderboard.gols(team.matchAway);
+    const result = AwayLeaderboard.results(team.matchAway);
     const totalGames = team.matchAway.length;
-    const efficiency = getAlltamsLeaderBoards.efficiency(result.totalPoints, totalGames);
+    const efficiency = AwayLeaderboard.efficiency(result.totalPoints, totalGames);
     return {
       name: team.teamName,
       totalGames,
@@ -75,9 +75,9 @@ export default class getAlltamsLeaderBoards {
         },
       ],
     });
-    const allTeamsBoards = getAlltamsLeaderBoards.createBoarder(allTeams);
+    const allTeamsBoards = AwayLeaderboard.createBoarder(allTeams);
 
-    const sortBoarder = getAlltamsLeaderBoards.sortBoarder(allTeamsBoards);
+    const sortBoarder = AwayLeaderboard.sortBoarder(allTeamsBoards);
     return sortBoarder;
   }
 }
