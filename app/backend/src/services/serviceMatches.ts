@@ -9,7 +9,7 @@ export default class MatchesService {
   static model = Matches;
 
   static async finAllMatches() {
-    const result = this.model.findAll({
+    const result = await this.model.findAll({
       include: [
         {
           model: Team,
@@ -25,6 +25,7 @@ export default class MatchesService {
         },
       ],
     });
+    // console.log(result)
     return result;
   }
 
