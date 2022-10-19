@@ -2,7 +2,7 @@
 import Matches from '../database/models/Matches';
 import Team from '../database/models/Team';
 // Devido a complexidade do requisito pedi ajuda de 'Guilherme Fernandes' na sala de estudo 4. em 15/10/2022 as 8:00.
-export default class getAlltamsLeaderBoards {
+export default class HomeLeaderboard {
   static gols = (arrayGols: any) => {
     const goalsFavor = arrayGols.reduce((acc: any, curr: any) => acc + curr.homeTeamGoals, 0); // awayTeamGoals
     const goalsOwn = arrayGols.reduce((acc: any, curr: any) => acc + curr.awayTeamGoals, 0); // homeTeamGoals
@@ -52,10 +52,10 @@ export default class getAlltamsLeaderBoards {
   };
 
   static createBoarder = (array: any) => array.map((team: any) => {
-    const gols = getAlltamsLeaderBoards.gols(team.matchHome);
-    const result = getAlltamsLeaderBoards.results(team.matchHome);
+    const gols = HomeLeaderboard.gols(team.matchHome);
+    const result = HomeLeaderboard.results(team.matchHome);
     const totalGames = team.matchHome.length;
-    const efficiency = getAlltamsLeaderBoards.efficiency(result.totalPoints, totalGames);
+    const efficiency = HomeLeaderboard.efficiency(result.totalPoints, totalGames);
     return {
       name: team.teamName,
       totalGames,
@@ -74,10 +74,11 @@ export default class getAlltamsLeaderBoards {
           where: { inProgress: 0 },
         },
       ],
+   
     });
-    const allTeamsBoards = getAlltamsLeaderBoards.createBoarder(allTeams);
+    const allTeamsBoards = HomeLeaderboard.createBoarder(allTeams);
 
-    const sortBoarder = getAlltamsLeaderBoards.sortBoarder(allTeamsBoards);
+    const sortBoarder = HomeLeaderboard.sortBoarder(allTeamsBoards);
     return sortBoarder;
   }
 }
