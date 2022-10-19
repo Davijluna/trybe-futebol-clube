@@ -33,6 +33,20 @@ describe('/login', () => {
       expect(response.body).to.have.property('token')
       sinon.restore()
     })
+  });
+
+  describe('Primeiro caso de teste falha', () => {
+    it('Deve cadastrar', async () => {
+      sinon.stub(UserModel, 'findOne').resolves(fakeUser as UserModel)
+      const response = await chai.request(app).post('/login').send({
+        email: 'useruser.com',  //
+        password: 'secret_user',//
+      });
+      expect(response.status).to.equal(401);
+      // expect(response.body).to.have.property('token')
+      sinon.restore()
+    })
+  });
 
 // describe('/login/validate', () => {
 //   describe('teste de login validade', () => {
@@ -68,7 +82,6 @@ describe('/login', () => {
   //      ...
 
   //   expect(...)
-  });
 
   // it('Seu sub-teste', () => {
   //   expect(false).to.be.eq(true);
